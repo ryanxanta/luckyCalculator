@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LUCKY</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mobile-styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <button class="settings-btn" aria-label="Settings"><span></span></button>
+        <h1 class="header__title" id="luckyTitle">LUCKY</h1>
+    </header>
+
+    <!-- Settings Panel -->
+    <div class="settings-overlay"></div>
+    <div class="settings-panel">
+        <div class="settings-panel__content">
+            <div class="settings-input-frame">
+                <div class="input-group">
+                    <label>Players</label>
+                    <div class="input-number-container">
+                        <button class="input-number-btn input-number-btn--minus" data-input="settingsPlayerInput">-</button>
+                        <input type="number" id="settingsPlayerInput" value="3" min="2" max="5">
+                        <button class="input-number-btn input-number-btn--plus" data-input="settingsPlayerInput">+</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Lucky</label>
+                    <div class="input-number-container">
+                        <button class="input-number-btn input-number-btn--minus" data-input="settingsLuckyInput">-</button>
+                        <input type="number" id="settingsLuckyInput" value="2" min="0">
+                        <button class="input-number-btn input-number-btn--plus" data-input="settingsLuckyInput">+</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Game</label>
+                    <div class="input-number-container">
+                        <button class="input-number-btn input-number-btn--minus" data-input="settingsGameInput">-</button>
+                        <input type="number" id="settingsGameInput" value="5" min="0">
+                        <button class="input-number-btn input-number-btn--plus" data-input="settingsGameInput">+</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Table</label>
+                    <div class="input-number-container">
+                        <button class="input-number-btn input-number-btn--minus" data-input="settingsTableInput">-</button>
+                        <input type="number" id="settingsTableInput" value="3" min="0">
+                        <button class="input-number-btn input-number-btn--plus" data-input="settingsTableInput">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn">Lock</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content area -->
+    <main class="main">
+        <!-- Top Frame (4/5) -->
+        <div class="frame frame--large">
+            <!-- Player Cards Area -->
+            <div class="player-area" id="playerCardsContainer">
+                <!-- Player cards will be added here -->
+            </div>
+        </div>
+
+        <!-- Bottom Frame (1/5) -->
+        <div class="frame frame--small">
+            <!-- Table Section -->
+            <div class="table">
+                <h3>Table</h3>
+                <div class="table-total">Total: 0</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="float-btn float-btn--undo" aria-label="Undo">↩</button>
+        <button class="float-btn float-btn--penalty" aria-label="Penalty">P</button>
+        <button class="float-btn float-btn--game" aria-label="Game">G</button>
+        <button class="float-btn float-btn--lucky-minus" aria-label="Minus Lucky">-L</button>
+        <button class="float-btn float-btn--lucky-add" aria-label="Add Lucky">+L</button>
+        <button class="float-btn float-btn--menu" aria-label="Toggle menu">+</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

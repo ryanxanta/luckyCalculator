@@ -1,0 +1,857 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #fff;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header {
+    background-color: #2c3e50;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.header__title {
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Settings Button */
+.settings-btn {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Hamburger icon lines */
+.settings-btn::before,
+.settings-btn::after,
+.settings-btn span {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+/* Middle line */
+.settings-btn span {
+    margin: 0;
+}
+
+/* Optional: Add hover effect */
+.settings-btn:hover {
+    opacity: 0.8;
+}
+
+/* Optional: Active state */
+.settings-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Main Content */
+.main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 50px); /* Full viewport height minus header */
+    background-color: #f5f5f5;
+    padding-right: 4rem;
+}
+
+/* Input Section */
+.input-section {
+    display: none; /* Hide input section in main content */
+}
+
+/* Button Group */
+.button-group {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center buttons */
+    gap: 0.8rem;
+    width: 120px;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.8rem 0;
+    background-color: #3498db;  /* Nice blue color */
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn--add-player {
+    background-color: #2ecc71;  /* Green color */
+    display: none;  /* Hidden by default */
+}
+
+.btn--add-player:hover {
+    background-color: #27ae60;
+}
+
+.btn--locked {
+    background-color: #e74c3c;  /* Red color when locked */
+}
+
+.btn--locked:hover {
+    background-color: #c0392b;
+}
+
+/* Player Area */
+.player-area {
+    margin-top: 1rem;
+    min-height: 200px;
+}
+
+/* Table Section */
+.table {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;  /* White background */
+    border-radius: 10px;     /* Rounded corners */
+    padding: 15px;           /* More padding */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Subtle shadow */
+}
+
+.table h3 {
+    margin-bottom: 0.8rem;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.table-total {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2e7d32;  /* Green color matching player card total */
+    background-color: #e8f5e9;  /* Light green background */
+    padding: 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 0 auto;
+    min-width: 120px;
+}
+
+/* Floating Buttons */
+.floating-buttons {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    z-index: 1000;
+}
+
+.float-btn {
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    transform: scale(0);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/* Main menu button is always visible */
+.float-btn--menu {
+    opacity: 1;
+    transform: scale(1);
+    position: relative;
+}
+
+/* When expanded, show all buttons with different distances from bottom */
+.floating-buttons.expanded .float-btn--undo {
+    transform: scale(1) translateY(-400px);
+    opacity: 1;
+}
+
+.floating-buttons.expanded .float-btn--penalty {
+    transform: scale(1) translateY(-320px);
+    opacity: 1;
+}
+
+.floating-buttons.expanded .float-btn--game {
+    transform: scale(1) translateY(-240px);
+    opacity: 1;
+}
+
+.floating-buttons.expanded .float-btn--lucky-minus {
+    transform: scale(1) translateY(-160px);
+    opacity: 1;
+}
+
+.floating-buttons.expanded .float-btn--lucky-add {
+    transform: scale(1) translateY(-80px);
+    opacity: 1;
+}
+
+/* Rotate the menu button when expanded */
+.floating-buttons.expanded .float-btn--menu {
+    transform: rotate(45deg);
+}
+
+/* Floating Button Colors */
+.float-btn--menu {
+    background-color: #3498db;
+}
+
+.float-btn--lucky-add {
+    background-color: #2ecc71;
+}
+
+.float-btn--lucky-minus {
+    background-color: #e74c3c;
+}
+
+.float-btn--game {
+    background-color: #f1c40f;
+    color: #000;
+}
+
+.float-btn--penalty {
+    background-color: #95a5a6;
+}
+
+.float-btn--undo {
+    background-color: #1abc9c;
+}
+
+/* Media query for very small screens */
+@media screen and (max-width: 320px) {
+    .float-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+    }
+
+    .main {
+        padding-right: 4.5rem;
+    }
+
+    .frame {
+        padding: 0.8rem;
+        margin: 0.3rem;
+    }
+}
+
+/* Settings Panel */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 200px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transition: left 0.3s ease-out;
+    z-index: 2000;
+    padding: 1rem;
+}
+
+.settings-panel.active {
+    left: 0;
+}
+
+/* Settings Panel Content */
+.settings-panel__content {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center content horizontally */
+    gap: 1rem;
+}
+
+.settings-input-frame {
+    background-color: #e0e0e0;  /* Same as main frames */
+    border-radius: 15px;        /* Same as main frames */
+    padding: 15px;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Update input group styles */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 150px;
+}
+
+/* Update button group styles */
+.button-group {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center buttons */
+    gap: 0.8rem;
+    width: 120px;
+}
+
+/* Overlay */
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 1999;
+}
+
+.settings-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hamburger Animation */
+.settings-btn.active::before {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.settings-btn.active::after {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.settings-btn.active span {
+    transform: scale(0);
+}
+
+/* Settings Panel specific styles */
+.settings-panel__content .input-group,
+.settings-panel__content .button-group {
+    width: 120px;
+}
+
+/* Add Input Group styles */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 120px;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+    text-align: left;
+}
+
+/* Input container for number inputs */
+.input-number-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 35px;  /* Increased height for better touch */
+}
+
+/* Style for - and + buttons */
+.input-number-btn {
+    width: 35px;  /* Increased width */
+    height: 35px;  /* Increased height */
+    border: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    color: #666;
+    font-size: 1.4rem;  /* Larger font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    flex-shrink: 0;  /* Prevent shrinking */
+}
+
+/* Left button (-) */
+.input-number-btn--minus {
+    border-radius: 6px 0 0 6px;
+}
+
+/* Right button (+) */
+.input-number-btn--plus {
+    border-radius: 0 6px 6px 0;
+}
+
+/* Input field */
+.input-number-container input[type="number"] {
+    width: 50px;  /* Fixed width */
+    height: 35px;  /* Match button height */
+    border: 1px solid #e0e0e0;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    font-size: 1rem;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+/* Remove default spinners */
+.input-number-container input[type="number"]::-webkit-outer-spin-button,
+.input-number-container input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/* Active state for buttons */
+.input-number-btn:active {
+    background-color: #e9ecef;
+}
+
+/* Focus state for input */
+.input-number-container input[type="number"]:focus {
+    outline: none;
+    background-color: #fff;
+}
+
+/* Add these frame styles to your CSS */
+.frame {
+    padding: 10px;
+    background-color: #e0e0e0;
+    margin: 0;
+    width: 90vw;
+    margin-left: 5vw;
+    border-radius: 15px;
+}
+
+.frame--large {
+    height: 80vh; /* 4/5 of viewport height */
+    margin-top: 1.5vh;
+    overflow-y: auto;
+}
+
+.frame--small {
+    height: 20vh; /* 1/5 of viewport height */
+    margin-top: 1.5vh;
+}
+
+/* Player Card styles */
+.player-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.player-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.player-card__name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.player-card__name:hover {
+    opacity: 0.7;
+}
+
+.player-card__name-input {
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+}
+
+.player-card__name-input:focus {
+    border-color: #3498db;
+}
+
+.player-card__controls {
+    display: flex;
+    gap: 10px;
+}
+
+.player-card__btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.player-card__btn--p.active {
+    background-color: #2ecc71;
+    color: #fff;
+    border-color: #2ecc71;
+}
+
+.player-card__btn--b.active {
+    background-color: #e74c3c;
+    color: #fff;
+    border-color: #e74c3c;
+}
+
+.player-card__btn--freeze.active {
+    background-color: #3498db;
+    color: #fff;
+    border-color: #3498db;
+}
+
+.player-card__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.player-card__stat {
+    text-align: center;
+    padding: 12px 8px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    min-height: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style for total box */
+.player-card__stat--total {
+    background-color: #e8f5e9;
+}
+
+.player-card__stat--total .stat-value {
+    color: #2e7d32;
+    font-size: 1.4rem;
+}
+
+/* Frozen card state */
+.player-card.frozen {
+    opacity: 0.6;
+}
+
+/* Update Settings Input Frame styles */
+.settings-input-frame {
+    background-color: #e0e0e0;  /* Same as main frames */
+    border-radius: 15px;        /* Same as main frames */
+    padding: 15px;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Update Settings Panel Content */
+.settings-panel__content {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center content horizontally */
+    gap: 1rem;
+}
+
+/* Update input groups inside frame */
+.settings-input-frame .input-group {
+    margin-bottom: 0.8rem;
+}
+
+.settings-input-frame .input-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Add these styles for the confirmation frame */
+.confirmation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.confirmation-frame {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.confirmation-frame h3 {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.confirmation-frame p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.confirmation-buttons .btn {
+    padding: 10px 20px;
+    width: auto;
+    min-width: 100px;
+}
+
+.btn--cancel {
+    background-color: #95a5a6;
+}
+
+.btn--confirm {
+    background-color: #e74c3c;
+}
+
+/* Alert Frame styles */
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.alert-frame {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.alert-frame h3 {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.alert-frame p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.alert-frame .btn {
+    width: auto;
+    min-width: 100px;
+    margin: 0 auto;
+}
+
+/* Add these styles for player card background colors */
+.player-card.p-active {
+    background-color: rgba(46, 204, 113, 0.1);  /* Light green */
+}
+
+.player-card.b-active {
+    background-color: rgba(231, 76, 60, 0.1);  /* Light red */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    /* Prevent text selection */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* Allow text selection in input fields */
+    input {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+
+    /* Increase touch targets */
+    .player-card__btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    .float-btn {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* Adjust spacing for smaller screens */
+    .player-card {
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+
+    .player-card__stats {
+        gap: 8px;
+    }
+
+    /* Make sure buttons are easy to tap */
+    .btn {
+        min-height: 44px;
+        padding: 12px 0;
+    }
+
+    /* Adjust font sizes */
+    .player-card__name {
+        font-size: 1.2rem;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+    }
+
+    /* Prevent rubber-band scrolling on iOS */
+    html {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Adjust frame sizes */
+    .frame {
+        width: 95vw;
+        margin-left: 2.5vw;
+    }
+
+    /* Adjust settings panel */
+    .settings-panel {
+        width: 50%;
+        max-width: 300px;
+    }
+
+    /* Make overlays easier to interact with */
+    .alert-frame,
+    .confirmation-frame {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .confirmation-buttons {
+        gap: 15px;
+    }
+
+    .confirmation-buttons .btn {
+        min-width: 120px;
+        padding: 12px 25px;
+    }
+}
+
+/* Additional styles for very small screens */
+@media (max-width: 320px) {
+    .player-card__btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+
+    .player-card__name {
+        font-size: 1.1rem;
+    }
+}

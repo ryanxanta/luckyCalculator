@@ -1,0 +1,4 @@
+/* Main web styles (for screens larger than 768px) */
+@media screen and (min-width: 768px) {
+    /* Put all your web-specific styles here */
+}
